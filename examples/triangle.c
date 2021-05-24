@@ -56,13 +56,22 @@ int main()
 
     // VBO
     float vertices[] = {
-        -0.5f, -0.5f, 0.0f, // left  
-         0.5f, -0.5f, 0.0f, // right 
-         0.0f,  0.5f, 0.0f  // top   
+         0.5f,  0.5f, 0.0f,  // top right
+         0.5f, -0.5f, 0.0f,  // bottom right
+        -0.5f, -0.5f, 0.0f,  // bottom left
+        -0.5f,  0.5f, 0.0f   // top left 
     }; 
+
+    u32 indices[] = {
+        0, 1, 3,
+        1, 2, 3
+    };
 
     Ohedo_VertexBuffer vbo = Ohedo_CreateVertexBuffer(vertices, sizeof(vertices));
     Ohedo_BindVertexBuffer(vbo);
+
+    Ohedo_IndexBuffer ebo = Ohedo_CreateIndexBuffer(indices, sizeof(indices));
+    Ohedo_BindIndexBuffer(ebo);
 
     // Attributes
     Ohedo_AddVertexAttribute(0, 3, sizeof(float) * 3, 0, Ohedo_VertexAttributeType_Float);
@@ -78,11 +87,12 @@ int main()
         Ohedo_BindShader(shader);
         Ohedo_BindVertexArray(vao);
 
-        Ohedo_RendererDraw(0, 3);
+        Ohedo_RendererDrawIndexed(0, 6);
 
         Ohedo_UpdateWindow(window);
     }
 
+    Ohedo_DeleteIndexBuffer(ebo);
     Ohedo_DeleteVertexBuffer(vbo);
     Ohedo_DeleteVertexArray(vao);
     Ohedo_DeleteShader(shader);

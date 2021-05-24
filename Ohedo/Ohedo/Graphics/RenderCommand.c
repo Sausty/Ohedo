@@ -1,6 +1,7 @@
 #include "RenderCommand.h"
 
 #include <glad/glad.h>
+#include <stdlib.h>
 
 void Ohedo_RendererClear()
 {
@@ -20,4 +21,9 @@ void Ohedo_RendererViewport(int scissorX, int scisoorY, int width, int height)
 void Ohedo_RendererDraw(int start, int vertexCount)
 {
     glDrawArrays(GL_TRIANGLES, start, vertexCount);
+}
+
+void Ohedo_RendererDrawIndexed(int start, int indexCount)
+{
+    glDrawElements(GL_TRIANGLES, indexCount, GL_UNSIGNED_INT, NULL);
 }

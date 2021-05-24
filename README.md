@@ -4,7 +4,7 @@ A simple engine in its very first stages of becoming a, game engine or just a fr
 
 Here are the features of Ohedo for now:
 
-- OpenGL 4.1 wrappers (VAO, VBO, Shader)
+- OpenGL 4.1 wrappers (VAO, VBO, EBO, Shader)
 - Window creation
 - Simple event callback system
 - Build system with CMake

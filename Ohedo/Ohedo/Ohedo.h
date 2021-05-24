@@ -10,6 +10,7 @@
 #include <Ohedo/Graphics/Shader.h>
 #include <Ohedo/Graphics/VertexArray.h>
 #include <Ohedo/Graphics/VertexBuffer.h>
+#include <Ohedo/Graphics/IndexBuffer.h>
 
 // Init
 typedef enum Ohedo_InitFlags Ohedo_InitFlags;

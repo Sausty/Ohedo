@@ -5,5 +5,6 @@ void Ohedo_RendererClear();
 void Ohedo_RendererClearColor(float r, float g, float b, float a);
 void Ohedo_RendererViewport(int scissorX, int scisoorY, int width, int height);
 void Ohedo_RendererDraw(int start, int vertexCount);
+void Ohedo_RendererDrawIndexed(int start, int indexCount);
 
 #endif
