@@ -105,3 +105,58 @@ void Ohedo_UnbindShader()
 {
     glUseProgram(0);
 }
+
+void Ohedo_ShaderUniformFloat(Ohedo_Shader shader, char* name, float value)
+{
+    i32 loc = glGetUniformLocation(shader.id, name);
+    glUniform1f(loc, value);
+}
+
+void Ohedo_ShaderUniformFloat2(Ohedo_Shader shader, char* name, Ohedo_Vec2 value)
+{
+    i32 loc = glGetUniformLocation(shader.id, name);
+    glUniform2f(loc, value.x, value.y);
+}
+
+void Ohedo_ShaderUniformFloat3(Ohedo_Shader shader, char* name, Ohedo_Vec3 value)
+{
+    i32 loc = glGetUniformLocation(shader.id, name);
+    glUniform3f(loc, value.x, value.y, value.z);
+}
+
+void Ohedo_ShaderUniformFloat4(Ohedo_Shader shader, char* name, Ohedo_Vec4 value)
+{
+    i32 loc = glGetUniformLocation(shader.id, name);
+    glUniform4f(loc, value.x, value.y, value.z, value.w);
+}
+
+
+void Ohedo_ShaderUniformInt(Ohedo_Shader shader, char* name, int value)
+{
+    i32 loc = glGetUniformLocation(shader.id, name);
+    glUniform1i(loc, value);
+}
+
+void Ohedo_ShaderUniformInt2(Ohedo_Shader shader, char* name, Ohedo_Vec2 value)
+{
+    i32 loc = glGetUniformLocation(shader.id, name);
+    glUniform2i(loc, value.x, value.y);
+}
+
+void Ohedo_ShaderUniformInt3(Ohedo_Shader shader, char* name, Ohedo_Vec3 value)
+{
+    i32 loc = glGetUniformLocation(shader.id, name);
+    glUniform3i(loc, value.x, value.y, value.z);
+}
+
+void Ohedo_ShaderUniformInt4(Ohedo_Shader shader, char* name, Ohedo_Vec4 value)
+{
+    i32 loc = glGetUniformLocation(shader.id, name);
+    glUniform4i(loc, value.x, value.y, value.z, value.w);
+}
+
+void Ohedo_ShaderUniformMat4(Ohedo_Shader shader, char* name, Ohedo_Mat4 value)
+{
+    i32 loc = glGetUniformLocation(shader.id, name);
+    glUniformMatrix4fv(loc, 1, GL_FALSE, value.data);
+}

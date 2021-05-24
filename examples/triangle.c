@@ -79,6 +79,9 @@ int main()
     Ohedo_UnbindVertexBuffer();
     Ohedo_UnbindVertexArray();
 
+    // Matrix
+    Ohedo_Mat4 transform = Ohedo_Mat4_Translate(Ohedo_Vec3_New(0.5f, 0.0f, 0.0f));
+
     while (!Ohedo_WindowShouldClose(window))
     {
         Ohedo_RendererClear();
@@ -86,6 +89,8 @@ int main()
 
         Ohedo_BindShader(shader);
         Ohedo_BindVertexArray(vao);
+
+        Ohedo_ShaderUniformMat4(shader, "u_Transform", transform);
 
         Ohedo_RendererDrawIndexed(0, 6);
 

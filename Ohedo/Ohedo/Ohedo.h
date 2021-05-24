@@ -5,6 +5,12 @@
 #include <Ohedo/Utils/Types.h>
 #include <Ohedo/Utils/Window.h>
 
+// Maths
+#include <Ohedo/Maths/Vec2.h>
+#include <Ohedo/Maths/Vec3.h>
+#include <Ohedo/Maths/Vec4.h>
+#include <Ohedo/Maths/Mat4.h>
+
 // Graphics
 #include <Ohedo/Graphics/RenderCommand.h>
 #include <Ohedo/Graphics/Shader.h>

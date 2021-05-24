@@ -13,6 +13,7 @@ typedef int i32;
 typedef unsigned int u32;
 typedef long i64;
 typedef unsigned long u64;
+typedef float f32;
 
 // Graphics
 typedef u32 RenderID;
