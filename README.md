@@ -16,4 +16,3 @@ What I am going to implement :
 - Custom Shading
 - Advanced input polling
 - UI library
-- Maths library
