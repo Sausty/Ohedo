@@ -17,6 +17,7 @@
 #include <Ohedo/Graphics/VertexArray.h>
 #include <Ohedo/Graphics/VertexBuffer.h>
 #include <Ohedo/Graphics/IndexBuffer.h>
+#include <Ohedo/Graphics/Texture2D.h>
 
 // Init
 typedef enum Ohedo_InitFlags Ohedo_InitFlags;

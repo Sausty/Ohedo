@@ -3,14 +3,14 @@
 
 #include <Ohedo/Utils/Types.h>
 
-typedef enum Ohedo_VertexAttributeType Ohedo_VertexAttributeType;
+Ohedo_Define_Enum(Ohedo_VertexAttributeType);
 enum Ohedo_VertexAttributeType
 {
     Ohedo_VertexAttributeType_Float,
     Ohedo_VertexAttributeType_Int
 };
 
-typedef struct Ohedo_VertexArray Ohedo_VertexArray;
+Ohedo_Define_Struct(Ohedo_VertexArray);
 struct Ohedo_VertexArray
 {
     RenderID id;

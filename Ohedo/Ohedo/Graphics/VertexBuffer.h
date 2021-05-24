@@ -3,7 +3,7 @@
 
 #include <Ohedo/Utils/Types.h>
 
-typedef struct Ohedo_VertexBuffer Ohedo_VertexBuffer;
+Ohedo_Define_Struct(Ohedo_VertexBuffer)
 struct Ohedo_VertexBuffer
 {
     RenderID id;

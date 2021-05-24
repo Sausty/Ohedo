@@ -1,0 +1,110 @@
+#include "Texture2D.h"
+
+#include "stb_image/stb_image.h"
+#include <glad/glad.h>
+#include <stdio.h>
+
+Ohedo_Texture2D Ohedo_CreateTextureFromFile(char* path, i32 genMips)
+{
+    Ohedo_Texture2D result;
+
+    stbi_set_flip_vertically_on_load(1);
+    u8* data = stbi_load(path, &result.width, &result.height, &result.channels, STBI_rgb_alpha);
+
+    glGenTextures(1, &result.id);
+    glBindTexture(GL_TEXTURE_2D, result.id);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    if (data)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, result.width, result.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+        if (genMips) glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        printf("Ohedo Texture 2D : Failed to load image with path (%s)\n", path);
+    }
+    stbi_image_free(data);
+
+    return result;
+}
+
+Ohedo_Texture2D Ohedo_CreateFloatTextureFromFile(char* path, i32 genMips)
+{
+    Ohedo_Texture2D result;
+
+    stbi_set_flip_vertically_on_load(1);
+    f32* data = stbi_loadf(path, &result.width, &result.height, &result.channels, STBI_rgb_alpha);
+
+    glGenTextures(1, &result.id);
+    glBindTexture(GL_TEXTURE_2D, result.id);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    if (data)
+    {
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16, result.width, result.height, 0, GL_RGB16, GL_FLOAT, data);
+        if (genMips) glGenerateMipmap(GL_TEXTURE_2D);
+    }
+    else
+    {
+        printf("Ohedo Texture 2D : Failed to load image with path (%s)\n", path);
+    }
+    stbi_image_free(data);
+
+    return result;
+}
+
+Ohedo_Texture2D Ohedo_CreateTextureFromMemory(u8* data, i32 width, i32 height, i32 genMips)
+{
+    Ohedo_Texture2D result;
+
+    glGenTextures(1, &result.id);
+    glBindTexture(GL_TEXTURE_2D, result.id);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, result.width, result.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    if (genMips) glGenerateMipmap(GL_TEXTURE_2D);
+
+    return result;
+}
+
+Ohedo_Texture2D Ohedo_CreateFloatTextureFromMemory(f32* data, i32 width, i32 height, i32 genMips)
+{
+    Ohedo_Texture2D result;
+
+    glGenTextures(1, &result.id);
+    glBindTexture(GL_TEXTURE_2D, result.id);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);	
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16, result.width, result.height, 0, GL_RGB16, GL_FLOAT, data);
+    if (genMips) glGenerateMipmap(GL_TEXTURE_2D);
+
+    return result;
+}
+
+void Ohedo_SetActiveTexture(int slot)
+{
+    glActiveTexture(GL_TEXTURE0 + slot);
+}
+
+void Ohedo_BindTexture2D(Ohedo_Texture2D texture)
+{
+    glBindTexture(GL_TEXTURE_2D, texture.id);
+}
+
+void Ohedo_UnbindTexture2D()
+{
+    glBindTexture(GL_TEXTURE_2D, 0);
+}

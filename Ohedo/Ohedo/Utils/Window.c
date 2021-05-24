@@ -31,9 +31,9 @@ void Ohedo_GLFWResizeCallback(GLFWwindow* window, i32 width, i32 height)
     s_ResizeCallback(width, height);
 }
 
-OhedoWindow* Ohedo_CreateWindow(i32 width, i32 height, char* title)
+Ohedo_Window* Ohedo_CreateWindow(i32 width, i32 height, char* title)
 {
-    OhedoWindow* result = malloc(sizeof(OhedoWindow));
+    Ohedo_Window* result = malloc(sizeof(Ohedo_Window));
 
     result->width = width;
     result->height = height;    
@@ -49,17 +49,17 @@ OhedoWindow* Ohedo_CreateWindow(i32 width, i32 height, char* title)
     return result;
 }
 
-void Ohedo_FreeWindow(OhedoWindow* window)
+void Ohedo_FreeWindow(Ohedo_Window* window)
 {
     glfwDestroyWindow(window->pointer);
 }
 
-i32 Ohedo_WindowShouldClose(OhedoWindow* window)
+i32 Ohedo_WindowShouldClose(Ohedo_Window* window)
 {
     return glfwWindowShouldClose(window->pointer);
 }
 
-void Ohedo_UpdateWindow(OhedoWindow* window)
+void Ohedo_UpdateWindow(Ohedo_Window* window)
 {
     glfwPollEvents();
     glfwSwapBuffers(window->pointer);
@@ -75,7 +75,7 @@ void Ohedo_SetWindowCloseCallback(Ohedo_CloseCallback fun)
     s_CloseCallback = fun;
 }
 
-void Ohedo_WindowInstallCallbacks(OhedoWindow* window)
+void Ohedo_WindowInstallCallbacks(Ohedo_Window* window)
 {
     if (s_ResizeCallback)   glfwSetWindowSizeCallback(window->pointer, Ohedo_GLFWResizeCallback);
     if (s_CloseCallback)    glfwSetWindowCloseCallback(window->pointer, Ohedo_GLFWCloseCallback);

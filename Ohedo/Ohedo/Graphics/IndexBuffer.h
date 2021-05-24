@@ -3,7 +3,7 @@
 
 #include <Ohedo/Utils/Types.h>
 
-typedef struct Ohedo_IndexBuffer Ohedo_IndexBuffer;
+Ohedo_Define_Struct(Ohedo_IndexBuffer)
 struct Ohedo_IndexBuffer
 {
     RenderID id;

@@ -38,7 +38,7 @@ int main()
 {
     Ohedo_Init(Ohedo_InitFlags_All);
 
-    OhedoWindow* window = Ohedo_CreateWindow(1280, 720, "Hello Ohedo!");
+    Ohedo_Window* window = Ohedo_CreateWindow(1280, 720, "Hello Ohedo!");
     Ohedo_SetWindowSizeCallback(resize_callback);
     Ohedo_WindowInstallCallbacks(window);
 
@@ -56,10 +56,10 @@ int main()
 
     // VBO
     float vertices[] = {
-         0.5f,  0.5f, 0.0f,  // top right
-         0.5f, -0.5f, 0.0f,  // bottom right
-        -0.5f, -0.5f, 0.0f,  // bottom left
-        -0.5f,  0.5f, 0.0f   // top left 
+         0.5f,  0.5f, 0.0f, 1.0f, 1.0f,  // top right
+         0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // bottom right
+        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
+        -0.5f,  0.5f, 0.0f, 0.0f, 1.0f // top left 
     }; 
 
     u32 indices[] = {
@@ -74,13 +74,16 @@ int main()
     Ohedo_BindIndexBuffer(ebo);
 
     // Attributes
-    Ohedo_AddVertexAttribute(0, 3, sizeof(float) * 3, 0, Ohedo_VertexAttributeType_Float);
+    Ohedo_AddVertexAttribute(0, 3, sizeof(float) * 5, 0, Ohedo_VertexAttributeType_Float);
+    Ohedo_AddVertexAttribute(1, 2, sizeof(float) * 5, sizeof(float) * 3, Ohedo_VertexAttributeType_Float);
 
     Ohedo_UnbindVertexBuffer();
     Ohedo_UnbindVertexArray();
 
+    Ohedo_Texture2D image = Ohedo_CreateTextureFromFile("assets/texture.png", 1);
+
     // Matrix
-    Ohedo_Mat4 transform = Ohedo_Mat4_Translate(Ohedo_Vec3_New(0.5f, 0.0f, 0.0f));
+    Ohedo_Mat4 transform = Ohedo_Mat4_Translate(Ohedo_Vec3_New(0.0f, 0.0f, 0.0f));
 
     while (!Ohedo_WindowShouldClose(window))
     {
@@ -90,6 +93,10 @@ int main()
         Ohedo_BindShader(shader);
         Ohedo_BindVertexArray(vao);
 
+        Ohedo_SetActiveTexture(0);
+        Ohedo_BindTexture2D(image);
+
+        Ohedo_ShaderUniformInt(shader, "u_Texture", 0);
         Ohedo_ShaderUniformMat4(shader, "u_Transform", transform);
 
         Ohedo_RendererDrawIndexed(0, 6);

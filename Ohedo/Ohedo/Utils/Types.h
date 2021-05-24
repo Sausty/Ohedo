@@ -18,4 +18,7 @@ typedef float f32;
 // Graphics
 typedef u32 RenderID;
 
+#define Ohedo_Define_Struct(name) typedef struct name name;
+#define Ohedo_Define_Enum(name) typedef enum name name;
+
 #endif

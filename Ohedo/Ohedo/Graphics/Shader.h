@@ -8,7 +8,7 @@
 #include <Ohedo/Maths/Vec4.h>
 #include <Ohedo/Maths/Mat4.h>
 
-typedef struct Ohedo_Shader Ohedo_Shader;
+Ohedo_Define_Struct(Ohedo_Shader)
 struct Ohedo_Shader
 {
     RenderID id;
