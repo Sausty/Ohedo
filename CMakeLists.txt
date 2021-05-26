@@ -28,4 +28,3 @@ link_libraries(examples Ohedo)
 
 target_include_directories(Ohedo PUBLIC "ext/glfw/include")
 target_include_directories(Ohedo PUBLIC "ext/glad/include")
-target_include_directories(examples PUBLIC "Ohedo")
