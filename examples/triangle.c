@@ -1,33 +1,6 @@
 #include <Ohedo/Ohedo.h>
 #include <stdio.h>
 
-char* read_file(char* path)
-{
-    FILE *fp;
-    long lSize;
-    char *buffer;
-
-    fp = fopen(path, "r");
-    if (!fp)
-        return NULL;
-    
-    fseek(fp, 0L, SEEK_END);
-    lSize = ftell(fp);
-    rewind(fp);
-
-    buffer = calloc(1, lSize + 1);
-    if (!buffer)
-    {
-        fclose(fp);
-        return NULL;
-    }
-
-    fread(buffer, lSize, 1, fp);
-
-    fclose(fp);
-    return buffer;
-}
-
 void resize_callback(int width, int height)
 {
     printf("%d, %d\n", width, height);
@@ -42,43 +15,7 @@ int main()
     Ohedo_SetWindowSizeCallback(resize_callback);
     Ohedo_WindowInstallCallbacks(window);
 
-    // Shader
-    char* vertexSource = read_file("shaders/vertex.vert");
-    char* fragmentSource = read_file("shaders/fragment.frag");
-
-    Ohedo_Shader shader = Ohedo_CreateShaderFromSource(vertexSource, fragmentSource);
-    free(vertexSource);
-    free(fragmentSource);
-
-    // VAO
-    Ohedo_VertexArray vao = Ohedo_CreateVertexArray();
-    Ohedo_BindVertexArray(vao);
-
-    // VBO
-    float vertices[] = {
-         0.5f,  0.5f, 0.0f, 1.0f, 1.0f,  // top right
-         0.5f, -0.5f, 0.0f, 1.0f, 0.0f, // bottom right
-        -0.5f, -0.5f, 0.0f, 0.0f, 0.0f, // bottom left
-        -0.5f,  0.5f, 0.0f, 0.0f, 1.0f // top left 
-    }; 
-
-    u32 indices[] = {
-        0, 1, 3,
-        1, 2, 3
-    };
-
-    Ohedo_VertexBuffer vbo = Ohedo_CreateVertexBuffer(vertices, sizeof(vertices));
-    Ohedo_BindVertexBuffer(vbo);
-
-    Ohedo_IndexBuffer ebo = Ohedo_CreateIndexBuffer(indices, sizeof(indices));
-    Ohedo_BindIndexBuffer(ebo);
-
-    // Attributes
-    Ohedo_AddVertexAttribute(0, 3, sizeof(float) * 5, 0, Ohedo_VertexAttributeType_Float);
-    Ohedo_AddVertexAttribute(1, 2, sizeof(float) * 5, sizeof(float) * 3, Ohedo_VertexAttributeType_Float);
-
-    Ohedo_UnbindVertexBuffer();
-    Ohedo_UnbindVertexArray();
+    Ohedo_Batch_Init();
 
     Ohedo_Texture2D image = Ohedo_CreateTextureFromFile("assets/texture.png", 1);
 
@@ -90,25 +27,16 @@ int main()
         Ohedo_RendererClear();
         Ohedo_RendererClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
-        Ohedo_BindShader(shader);
-        Ohedo_BindVertexArray(vao);
-
-        Ohedo_SetActiveTexture(0);
-        Ohedo_BindTexture2D(image);
-
-        Ohedo_ShaderUniformInt(shader, "u_Texture", 0);
-        Ohedo_ShaderUniformMat4(shader, "u_Transform", transform);
-
-        Ohedo_RendererDrawIndexed(0, 6);
+        Ohedo_Batch_Begin(Ohedo_Mat4_Identity());
+        Ohedo_Batch_Draw_Quad(Ohedo_Vec3_New(-0.75f, 0.0f, 0.0f), Ohedo_Vec2_New(0.25f, 0.25f), Ohedo_Vec3_New(1.0f, 1.0f, 1.0f), 0.0f, Ohedo_Vec3_New(1.0f, 1.0f, 1.0f));
+        Ohedo_Batch_Draw_Textured_Quad(Ohedo_Vec3_New(0.75f, 0.0f, 0.0f), Ohedo_Vec2_New(0.25f, 0.25f), Ohedo_Vec3_New(1.0f, 1.0f, 1.0f), 0.0f, Ohedo_Vec3_New(1.0f, 1.0f, 1.0f), image);
+        Ohedo_Batch_End();
 
         Ohedo_UpdateWindow(window);
     }
 
-    Ohedo_DeleteIndexBuffer(ebo);
-    Ohedo_DeleteVertexBuffer(vbo);
-    Ohedo_DeleteVertexArray(vao);
-    Ohedo_DeleteShader(shader);
-
+    Ohedo_Batch_Shutdown();
+    Ohedo_DeleteTexture(image);
     Ohedo_FreeWindow(window);
     Ohedo_Shutdown();
     return 0;

@@ -29,6 +29,8 @@ Ohedo_Texture2D Ohedo_CreateTextureFromFile(char* path, i32 genMips)
     }
     stbi_image_free(data);
 
+    glBindTexture(GL_TEXTURE_2D, 0);
+
     return result;
 }
 
@@ -57,10 +59,12 @@ Ohedo_Texture2D Ohedo_CreateFloatTextureFromFile(char* path, i32 genMips)
     }
     stbi_image_free(data);
 
+    glBindTexture(GL_TEXTURE_2D, 0);
+
     return result;
 }
 
-Ohedo_Texture2D Ohedo_CreateTextureFromMemory(u8* data, i32 width, i32 height, i32 genMips)
+Ohedo_Texture2D Ohedo_CreateTextureFromMemory(void* data, i32 width, i32 height, i32 genMips)
 {
     Ohedo_Texture2D result;
 
@@ -71,8 +75,10 @@ Ohedo_Texture2D Ohedo_CreateTextureFromMemory(u8* data, i32 width, i32 height, i
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, result.width, result.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
     if (genMips) glGenerateMipmap(GL_TEXTURE_2D);
+
+    glBindTexture(GL_TEXTURE_2D, 0);
 
     return result;
 }
@@ -91,7 +97,14 @@ Ohedo_Texture2D Ohedo_CreateFloatTextureFromMemory(f32* data, i32 width, i32 hei
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16, result.width, result.height, 0, GL_RGB16, GL_FLOAT, data);
     if (genMips) glGenerateMipmap(GL_TEXTURE_2D);
 
+    glBindTexture(GL_TEXTURE_2D, 0);
+
     return result;
+}
+
+void Ohedo_DeleteTexture(Ohedo_Texture2D texture)
+{
+    glDeleteTextures(1, &texture.id);
 }
 
 void Ohedo_SetActiveTexture(int slot)

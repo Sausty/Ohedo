@@ -32,5 +32,6 @@ void Ohedo_ShaderUniformInt3(Ohedo_Shader shader, char* name, Ohedo_Vec3 value);
 void Ohedo_ShaderUniformInt4(Ohedo_Shader shader, char* name, Ohedo_Vec4 value);
 
 void Ohedo_ShaderUniformMat4(Ohedo_Shader shader, char* name, Ohedo_Mat4 value);
+void Ohedo_ShaderUniformIntArray(Ohedo_Shader shader, char* name, i32* array, u32 count);
 
 #endif

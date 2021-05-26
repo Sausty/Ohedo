@@ -160,3 +160,9 @@ void Ohedo_ShaderUniformMat4(Ohedo_Shader shader, char* name, Ohedo_Mat4 value)
     i32 loc = glGetUniformLocation(shader.id, name);
     glUniformMatrix4fv(loc, 1, GL_FALSE, value.data);
 }
+
+void Ohedo_ShaderUniformIntArray(Ohedo_Shader shader, char* name, i32* array, u32 count)
+{
+    i32 loc = glGetUniformLocation(shader.id, name);
+    glUniform1iv(loc, count, array);
+}
