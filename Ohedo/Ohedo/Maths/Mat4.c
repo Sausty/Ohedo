@@ -133,9 +133,9 @@ Ohedo_Mat4 Ohedo_Mat4_Orthographic(f32 left, f32 right, f32 bottom, f32 top, f32
     result.data[1 + 1 * 4] = 2.0f / (top - bottom);
     result.data[2 + 2 * 4] = 2.0f / (near - far);
     
-    result.data[3 + 0 * 4] = (left + right) / (left - right);
-    result.data[3 + 1 * 4] = (bottom + top) / (bottom - top);
-    result.data[3 + 2 * 4] = (far + near) / (far - near);
+    result.data[0 + 3 * 4] = (left + right) / (left - right);
+    result.data[1 + 3 * 4] = (bottom + top) / (bottom - top);
+    result.data[2 + 3 * 4] = (far + near) / (far - near);
     
     return result;
 }

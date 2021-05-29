@@ -15,16 +15,20 @@ set(OHEDO_INCLUDE_DIRS "Ohedo")
 
 include_directories("ext/glfw/include")
 include_directories("ext/glad/include")
+include_directories("ext/freetype/include")
 include_directories("Ohedo")
 
 add_subdirectory (examples)
 add_subdirectory (Ohedo)
 add_subdirectory (ext/glfw)
 add_subdirectory (ext/glad)
+add_subdirectory (ext/freetype)
 
 link_libraries(Ohedo glfw)
 link_libraries(Ohedo glad)
+link_libraries(Ohedo freetype)
 link_libraries(examples Ohedo)
 
 target_include_directories(Ohedo PUBLIC "ext/glfw/include")
 target_include_directories(Ohedo PUBLIC "ext/glad/include")
+target_include_directories(Ohedo PUBLIC "ext/freetype/include")

@@ -1,3 +1,6 @@
 [submodule "ext/glfw"]
 	path = ext/glfw
 	url = https://github.com/glfw/glfw
+[submodule "ext/freetype"]
+	path = ext/freetype
+	url = https://github.com/freetype/freetype

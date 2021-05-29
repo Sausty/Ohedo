@@ -18,3 +18,8 @@ add_executable(ECS "ECS.c")
 target_link_libraries(ECS PUBLIC Ohedo)
 target_link_directories(ECS PUBLIC Ohedo)
 target_include_directories(ECS PUBLIC "Ohedo")
+
+add_executable(TextRendering "TextRendering.c")
+target_link_libraries(TextRendering PUBLIC Ohedo)
+target_link_directories(TextRendering PUBLIC Ohedo)
+target_include_directories(TextRendering PUBLIC "Ohedo")

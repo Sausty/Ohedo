@@ -25,6 +25,10 @@
 #include <Ohedo/Graphics/Texture2D.h>
 #include <Ohedo/Graphics/BatchRenderer.h>
 
+// UI
+#include <Ohedo/Graphics/UI/Font.h>
+#include <Ohedo/Graphics/UI/TextRenderer.h>
+
 // Init
 typedef enum Ohedo_InitFlags Ohedo_InitFlags;
 enum Ohedo_InitFlags
