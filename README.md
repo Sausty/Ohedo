@@ -10,6 +10,7 @@ Here are the features of Ohedo for now:
 - Build system with CMake
 - Textures
 - Entity Component System
+- Text renderer
   
 What I am going to implement :
 
