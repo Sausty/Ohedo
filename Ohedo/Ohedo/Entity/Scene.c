@@ -71,9 +71,20 @@ void Ohedo_FreeEntityMemory(Ohedo_Scene* scene, Ohedo_Entity* entity)
 }
 
 void Ohedo_UpdateScene(Ohedo_Scene* scene)
-{
-    // No camera for now
-    Ohedo_Batch_Begin(Ohedo_Mat4_Identity());
+{  
+    Ohedo_Mat4 camera = Ohedo_Mat4_Identity();
+
+    for (i32 i = 0; i < scene->entityCount; i++)
+    {
+        Ohedo_Entity entt = *scene->entities[i];
+
+        if (entt.camera && entt.camera->primary)
+        {
+            camera = entt.camera->pv_matrix;
+        }
+    }
+
+    Ohedo_Batch_Begin(camera);
 
     for (i32 i = 0; i < scene->entityCount; i++)
     {

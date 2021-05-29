@@ -153,8 +153,8 @@ Ohedo_Mat4 Ohedo_Mat4_Perspective(f32 fov, f32 aspectRatio, f32 near, f32 far)
     result.data[0 + 0 * 4] = a;
     result.data[1 + 1 * 4] = q;
     result.data[2 + 2 * 4] = b;
-    result.data[2 + 3 * 4] = -1.0f;
-    result.data[3 + 2 * 4] = c;
+    result.data[2 + 3 * 4] = c;
+    result.data[3 + 2 * 4] = -1.0f;
     
     return result;
 }

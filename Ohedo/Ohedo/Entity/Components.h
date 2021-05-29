@@ -3,6 +3,7 @@
 
 #include <Ohedo/Utils/Types.h>
 #include <Ohedo/Maths/Vec3.h>
+#include <Ohedo/Maths/Mat4.h>
 #include <Ohedo/Graphics/Texture2D.h>
 
 Ohedo_Define_Struct(Ohedo_TransformComponent)
@@ -27,6 +28,13 @@ struct Ohedo_QuadColliderComponent
     i32 height;
     i32 x;
     i32 y;
+};
+
+Ohedo_Define_Struct(Ohedo_CameraComponent)
+struct Ohedo_CameraComponent
+{
+    Ohedo_Mat4 pv_matrix;
+    i32 primary;
 };
 
 #endif

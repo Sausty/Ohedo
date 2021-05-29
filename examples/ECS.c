@@ -32,13 +32,22 @@ int main()
     
     // Modify the components
     Ohedo_AddTransformComponent(&quad);
-    quad.transform->position = Ohedo_Vec3_New(0.5f, 0.0f, 0.0f);
+    quad.transform->position = Ohedo_Vec3_New(0.0f, 0.0f, -0.8f);
+    quad.transform->scale = Ohedo_Vec3_New(2.0f, 1.0f, 1.0f);
 
     Ohedo_AddSpriteRendererComponent(&quad);
     quad.spriteRenderer->texture = image;
     quad.spriteRenderer->color = Ohedo_Vec3_New(1.0f, 1.0f, 1.0f);
 
-    // Add the entity to the scene
+    // Make a custom camera entity
+    Ohedo_Entity camera = Ohedo_CreateEntity(scene);
+
+    // Add components
+    Ohedo_AddCameraComponent(&camera, 1);
+    camera.camera->pv_matrix = Ohedo_Mat4_Perspective(90.0f, 1280.0f / 720.0f, 0.01f, 1000.0f);
+
+    // Add the entities to the scene
+    Ohedo_AddEntity(scene, &camera);
     Ohedo_AddEntity(scene, &quad);
 
     // Main loop

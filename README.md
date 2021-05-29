@@ -12,8 +12,10 @@ Here are the features of Ohedo for now:
 - Entity Component System
   
 What I am going to implement :
+
 - Model loading
 - Cube Maps
 - Custom Shading
 - Advanced input polling
 - UI library
+  

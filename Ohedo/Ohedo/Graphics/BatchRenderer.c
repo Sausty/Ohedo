@@ -120,8 +120,8 @@ void Ohedo_Batch_Init()
     s_Data.TextureSlots[0] = s_Data.WhiteTexture.id;
 
     // Shader
-    char* vertexShader = "#version 330 core\n\nlayout(location = 0) in vec3 v_Position;\nlayout(location = 1) in vec3 v_Color;\nlayout(location = 2) in vec2 v_TexCoords;\nlayout(location = 3) in float v_TexIndex;\n\nout vec3 f_Position;\nout vec3 f_Color;\nout vec2 f_TexCoords;\nout float f_TexIndex;\n\nuniform mat4 u_ViewProjection;\n\nvoid main() {\n\tf_Position = v_Position;\n\tf_Color = v_Color;\n\tf_TexCoords = v_TexCoords;\n\tf_TexIndex = v_TexIndex;\n\tgl_Position = u_ViewProjection * vec4(v_Position, 1.0);\n}\n";
-    char* fragmentShader = "#version 330 core\n\nlayout(location = 0) out vec4 FragColor;\n\nin vec3 f_Position;\nin vec3 f_Color;\nin vec2 f_TexCoords;\nin float f_TexIndex;\n\nuniform sampler2D u_Textures[32];\n\nvoid main() {\n\tvec4 color = vec4(f_Color, 1.0);\ncolor *= texture(u_Textures[int(f_TexIndex)], f_TexCoords);\nif (color.a < 0.2)\n\t\tdiscard;\n\nFragColor = color;\n}";
+    char* vertexShader = "#version 430 core\n\nlayout(location = 0) in vec3 v_Position;\nlayout(location = 1) in vec3 v_Color;\nlayout(location = 2) in vec2 v_TexCoords;\nlayout(location = 3) in float v_TexIndex;\n\nout vec3 f_Position;\nout vec3 f_Color;\nout vec2 f_TexCoords;\nout flat float f_TexIndex;\n\nuniform mat4 u_ViewProjection;\n\nvoid main() {\n\tf_Position = v_Position;\n\tf_Color = v_Color;\n\tf_TexCoords = v_TexCoords;\n\tf_TexIndex = v_TexIndex;\n\tgl_Position = u_ViewProjection * vec4(v_Position, 1.0);\n}\n";
+    char* fragmentShader = "#version 430 core\n\nlayout(location = 0) out vec4 FragColor;\n\nin vec3 f_Position;\nin vec3 f_Color;\nin vec2 f_TexCoords;\nin flat float f_TexIndex;\n\nuniform sampler2D u_Textures[32];\n\nvoid main() {\n\tvec4 color = vec4(f_Color, 1.0);\ncolor *= texture(u_Textures[int(f_TexIndex)], f_TexCoords);\nif (color.a < 0.2)\n\t\tdiscard;\n\nFragColor = color;\n}";
 
     s_Data.TextureShader = Ohedo_CreateShaderFromSource(vertexShader, fragmentShader);
 

@@ -6,7 +6,7 @@ void Ohedo_AddTransformComponent(Ohedo_Entity* entity)
     entity->transform = malloc(sizeof(Ohedo_TransformComponent));
     entity->transform->position = Ohedo_Vec3_Identity();
     entity->transform->scale = Ohedo_Vec3_Scalar(1.0f);
-    entity->transform->rotation = Ohedo_Vec3_Scalar(1.0f);
+    entity->transform->rotation = Ohedo_Vec3_Scalar(0.0f);
 }
 
 void Ohedo_AddSpriteRendererComponent(Ohedo_Entity* entity)
@@ -28,6 +28,13 @@ void Ohedo_AddQuadColliderComponent(Ohedo_Entity* entity)
     }
 }
 
+void Ohedo_AddCameraComponent(Ohedo_Entity* entity, i32 primary)
+{
+    entity->camera = malloc(sizeof(Ohedo_CameraComponent));
+    entity->camera->primary = primary;
+    entity->camera->pv_matrix = Ohedo_Mat4_Identity();
+}
+
 void Ohedo_RemoveTransformComponent(Ohedo_Entity* entity)
 {
     if (entity->transform != NULL)
@@ -44,6 +51,12 @@ void Ohedo_RemoveQuadColliderComponent(Ohedo_Entity* entity)
 {
     if (entity->quadCollider != NULL)
         free(entity->quadCollider);
+}
+
+void Ohedo_RemoveCameraComponent(Ohedo_Entity* entity)
+{
+    if (entity->camera != NULL)
+        free(entity->camera);
 }
 
 i32 Ohedo_IsEntityValid(Ohedo_Entity* entity)
