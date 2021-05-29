@@ -8,9 +8,10 @@ Here are the features of Ohedo for now:
 - Window creation
 - Simple event callback system
 - Build system with CMake
+- Textures
+- Entity Component System
   
 What I am going to implement :
-- Textures
 - Model loading
 - Cube Maps
 - Custom Shading

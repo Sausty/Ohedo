@@ -1,3 +1,7 @@
+# Build outputs
 build
+vs2019
+
+# Workspace files
 .vscode
 *code-workspace

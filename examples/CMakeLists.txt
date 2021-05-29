@@ -13,3 +13,8 @@ add_executable(Triangle "Triangle.c")
 target_link_libraries(Triangle PUBLIC Ohedo)
 target_link_directories(Triangle PUBLIC Ohedo)
 target_include_directories(Triangle PUBLIC "Ohedo")
+
+add_executable(ECS "ECS.c")
+target_link_libraries(ECS PUBLIC Ohedo)
+target_link_directories(ECS PUBLIC Ohedo)
+target_include_directories(ECS PUBLIC "Ohedo")

@@ -5,6 +5,11 @@
 #include <Ohedo/Utils/Types.h>
 #include <Ohedo/Utils/Window.h>
 
+// Entity
+#include <Ohedo/Entity/Components.h>
+#include <Ohedo/Entity/Entity.h>
+#include <Ohedo/Entity/Scene.h>
+
 // Maths
 #include <Ohedo/Maths/Vec2.h>
 #include <Ohedo/Maths/Vec3.h>
