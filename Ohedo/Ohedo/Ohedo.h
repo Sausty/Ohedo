@@ -15,6 +15,7 @@
 #include <Ohedo/Maths/Vec3.h>
 #include <Ohedo/Maths/Vec4.h>
 #include <Ohedo/Maths/Mat4.h>
+#include <Ohedo/Maths/Noise.h>
 
 // Graphics
 #include <Ohedo/Graphics/RenderCommand.h>
