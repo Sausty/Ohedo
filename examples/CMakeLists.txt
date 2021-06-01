@@ -33,3 +33,8 @@ add_executable(MeshAndInput "MeshAndInput.c")
 target_link_libraries(MeshAndInput PUBLIC Ohedo)
 target_link_directories(MeshAndInput PUBLIC Ohedo)
 target_include_directories(MeshAndInput PUBLIC "Ohedo")
+
+add_executable(PBR "PBR.c")
+target_link_libraries(PBR PUBLIC Ohedo)
+target_link_directories(PBR PUBLIC Ohedo)
+target_include_directories(PBR PUBLIC "PBR")

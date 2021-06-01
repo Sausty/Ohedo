@@ -6,6 +6,7 @@
 #include <Ohedo/Utils/Window.h>
 #include <Ohedo/Utils/InputCodes.h>
 #include <Ohedo/Utils/Input.h>
+#include <Ohedo/Utils/Timer.h>
 
 // Entity
 #include <Ohedo/Entity/Components.h>

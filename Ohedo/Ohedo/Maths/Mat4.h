@@ -25,5 +25,6 @@ Ohedo_Mat4 Ohedo_Mat4_Rotate(Ohedo_Vec3 vector, f32 angle);
 // Camera stuff
 Ohedo_Mat4 Ohedo_Mat4_Orthographic(f32 left, f32 right, f32 bottom, f32 top, f32 near, f32 far);
 Ohedo_Mat4 Ohedo_Mat4_Perspective(f32 fov, f32 aspectRatio, f32 near, f32 far);
+Ohedo_Mat4 Ohedo_Mat4_LookAt(Ohedo_Vec3 cam, Ohedo_Vec3 obj, Ohedo_Vec3 up);
 
 #endif

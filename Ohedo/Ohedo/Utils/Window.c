@@ -48,7 +48,7 @@ Ohedo_Window* Ohedo_CreateWindow(i32 width, i32 height, char* title)
 
     glEnable(GL_DEPTH_TEST);
     //glEnable(GL_CULL_FACE);
-    glfwSwapInterval(0);
+    glfwSwapInterval(1);
 
     return result;
 }

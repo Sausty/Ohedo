@@ -155,3 +155,26 @@ Ohedo_Mat4 Ohedo_Mat4_Perspective(f32 fov, f32 aspectRatio, f32 near, f32 far)
     
     return result;
 }
+
+Ohedo_Mat4 Ohedo_Mat4_LookAt(Ohedo_Vec3 cam, Ohedo_Vec3 obj, Ohedo_Vec3 up)
+{
+    Ohedo_Mat4 result = Ohedo_Mat4_Identity();
+    
+    Ohedo_Vec3 f = Ohedo_Vec3_Normalise(Ohedo_Vec3_Div(obj, cam));
+    Ohedo_Vec3 s = Ohedo_Vec3_Cross(f, Ohedo_Vec3_Normalise(up));
+    Ohedo_Vec3 u = Ohedo_Vec3_Cross(s, f);
+
+    result.data[0 + 0 * 4] = s.x;
+	result.data[0 + 1 * 4] = s.y;
+	result.data[0 + 2 * 4] = s.z;
+
+	result.data[0 + 1 * 4] = u.x;
+	result.data[1 + 1 * 4] = u.y;
+	result.data[2 + 1 * 4] = u.z;
+
+	result.data[0 + 2 * 4] = -f.x;
+	result.data[1 + 2 * 4] = -f.y;
+	result.data[2 + 2 * 4] = -f.z;
+    
+    return Ohedo_Mat4_Multiply(result, Ohedo_Mat4_Translate(Ohedo_Vec3_New(-cam.x, -cam.y, -cam.z)));
+}
