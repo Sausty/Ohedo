@@ -254,8 +254,8 @@ Ohedo_Mesh Ohedo_CreateMeshFromGLTF(char* path)
     }
 
     Ohedo_AddVertexAttribute(0, 3, sizeof(Ohedo_MeshVertex), 0, Ohedo_VertexAttributeType_Float);
-    Ohedo_AddVertexAttribute(1, 3, sizeof(Ohedo_MeshVertex), offsetof(Ohedo_MeshVertex, position), Ohedo_VertexAttributeType_Float);
-    Ohedo_AddVertexAttribute(2, 2, sizeof(Ohedo_MeshVertex), offsetof(Ohedo_MeshVertex, normal), Ohedo_VertexAttributeType_Float);
+    Ohedo_AddVertexAttribute(1, 3, sizeof(Ohedo_MeshVertex), sizeof(float) * 3, Ohedo_VertexAttributeType_Float);
+    Ohedo_AddVertexAttribute(2, 2, sizeof(Ohedo_MeshVertex), sizeof(float) * 6, Ohedo_VertexAttributeType_Float);
 
     Ohedo_UnbindVertexArray();
 

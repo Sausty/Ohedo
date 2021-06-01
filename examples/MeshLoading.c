@@ -61,6 +61,10 @@ int main()
 
     Ohedo_AddMaterialTexture(&material, baseColor, "u_AlbedoTexture");
 
+    Ohedo_Mat4 transform = Ohedo_Mat4_Translate(Ohedo_Vec3_New(0.0f, 0.0f, -1.0f));
+    transform = Ohedo_Mat4_Multiply(transform, Ohedo_Mat4_Rotate(Ohedo_Vec3_New(1.0f, 0.0f, 0.0f), 90.0f));
+    Ohedo_Mat4 cam = Ohedo_Mat4_Perspective(90.0f, 1280.0f / 720.0f, 0.01f, 1000.0f);
+
     // Main loop
     while (!Ohedo_WindowShouldClose(window))
     {
@@ -70,9 +74,6 @@ int main()
 
         // Draw 
         Ohedo_BindMaterial(material);
-
-        Ohedo_Mat4 transform = Ohedo_Mat4_Translate(Ohedo_Vec3_New(0.0f, 0.0f, -3.0f));
-        Ohedo_Mat4 cam = Ohedo_Mat4_Perspective(90.0f, 1280.0f / 720.0f, 0.01f, 1000.0f);
         Ohedo_ShaderUniformMat4(material.shader, "u_Camera", cam);
         Ohedo_ShaderUniformMat4(material.shader, "u_Transform", transform);
 
