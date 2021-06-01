@@ -11,12 +11,12 @@ Here are the features of Ohedo for now:
 - Textures
 - Entity Component System
 - Text renderer
-  
+- Model loading
+- Advanced input polling  
+
 What I am going to implement :
 
-- Model loading
 - Cube Maps
 - Custom Shading
-- Advanced input polling
 - UI library
   

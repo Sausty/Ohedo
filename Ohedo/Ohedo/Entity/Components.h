@@ -5,6 +5,8 @@
 #include <Ohedo/Maths/Vec3.h>
 #include <Ohedo/Maths/Mat4.h>
 #include <Ohedo/Graphics/Texture2D.h>
+#include <Ohedo/Graphics/Material.h>
+#include <Ohedo/Graphics/Mesh.h>
 
 Ohedo_Define_Struct(Ohedo_TransformComponent)
 struct Ohedo_TransformComponent
@@ -35,6 +37,13 @@ struct Ohedo_CameraComponent
 {
     Ohedo_Mat4 pv_matrix;
     i32 primary;
+};
+
+Ohedo_Define_Struct(Ohedo_MeshRenderer)
+struct Ohedo_MeshRenderer
+{
+    Ohedo_Mesh mesh;
+    Ohedo_Material material;
 };
 
 #endif

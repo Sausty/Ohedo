@@ -28,3 +28,8 @@ add_executable(MeshLoading "MeshLoading.c")
 target_link_libraries(MeshLoading PUBLIC Ohedo)
 target_link_directories(MeshLoading PUBLIC Ohedo)
 target_include_directories(MeshLoading PUBLIC "Ohedo")
+
+add_executable(MeshAndInput "MeshAndInput.c")
+target_link_libraries(MeshAndInput PUBLIC Ohedo)
+target_link_directories(MeshAndInput PUBLIC Ohedo)
+target_include_directories(MeshAndInput PUBLIC "Ohedo")

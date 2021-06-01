@@ -4,6 +4,8 @@
 // Utils
 #include <Ohedo/Utils/Types.h>
 #include <Ohedo/Utils/Window.h>
+#include <Ohedo/Utils/InputCodes.h>
+#include <Ohedo/Utils/Input.h>
 
 // Entity
 #include <Ohedo/Entity/Components.h>

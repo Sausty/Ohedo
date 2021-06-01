@@ -66,6 +66,8 @@ void Ohedo_FreeEntityMemory(Ohedo_Scene* scene, Ohedo_Entity* entity)
     {
         Ohedo_RemoveQuadColliderComponent(entity);
         Ohedo_RemoveSpriteRendererComponent(entity);
+        Ohedo_RemoveCameraComponent(entity);
+        Ohedo_RemoveMeshRenderer(entity);
         Ohedo_RemoveTransformComponent(entity);
     }
 }
@@ -84,6 +86,7 @@ void Ohedo_UpdateScene(Ohedo_Scene* scene)
         }
     }
 
+    // 2D
     Ohedo_Batch_Begin(camera);
 
     for (i32 i = 0; i < scene->entityCount; i++)
@@ -123,4 +126,17 @@ void Ohedo_UpdateScene(Ohedo_Scene* scene)
     }
 
     Ohedo_Batch_End();
+
+    // Mesh renderer
+    for (i32 i = 0; i < scene->entityCount; i++)
+    {
+        Ohedo_Entity entt = *scene->entities[i];
+
+        if (entt.meshRenderer)
+        {
+            Ohedo_BindMaterial(&entt.meshRenderer->material);
+            Ohedo_DrawMesh(entt.meshRenderer->mesh);
+            Ohedo_UnbindMaterial(entt.meshRenderer->material);
+        }
+    }
 }

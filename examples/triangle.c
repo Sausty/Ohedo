@@ -1,34 +1,6 @@
 #include <Ohedo/Ohedo.h>
 #include <stdio.h>
 
-// Ohedo doesn't provide a filesystem for now
-char* read_file(char* path)
-{
-    FILE *fp;
-    long lSize;
-    char *buffer;
-
-    fp = fopen(path, "r");
-    if (!fp)
-        return NULL;
-    
-    fseek(fp, 0L, SEEK_END);
-    lSize = ftell(fp);
-    rewind(fp);
-
-    buffer = calloc(1, lSize + 1);
-    if (!buffer)
-    {
-        fclose(fp);
-        return NULL;
-    }
-
-    fread(buffer, lSize, 1, fp);
-
-    fclose(fp);
-    return buffer;
-}
-
 // Call glViewport when the window is resized
 void resize_callback(int width, int height)
 {
@@ -47,12 +19,7 @@ int main()
     Ohedo_WindowInstallCallbacks(window);
 
     // Shader
-    char* vertexSource = read_file("shaders/triangle/vertex.vert");
-    char* fragmentSource = read_file("shaders/triangle/fragment.frag");
-
-    Ohedo_Shader shader = Ohedo_CreateShaderFromSource(vertexSource, fragmentSource);
-    free(vertexSource); // Don't forget to free the allocated memory
-    free(fragmentSource);
+    Ohedo_Shader shader = Ohedo_CreateShaderFromFile("shaders/triangle/vertex.vert", "shaders/triangle/fragment.frag");
 
     // VAO
     Ohedo_VertexArray vao = Ohedo_CreateVertexArray();

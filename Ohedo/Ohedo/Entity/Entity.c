@@ -35,6 +35,11 @@ void Ohedo_AddCameraComponent(Ohedo_Entity* entity, i32 primary)
     entity->camera->pv_matrix = Ohedo_Mat4_Identity();
 }
 
+void Ohedo_AddMeshRenderer(Ohedo_Entity* entity)
+{
+    entity->meshRenderer = malloc(sizeof(Ohedo_MeshRenderer));
+}
+
 void Ohedo_RemoveTransformComponent(Ohedo_Entity* entity)
 {
     if (entity->transform != NULL)
@@ -57,6 +62,12 @@ void Ohedo_RemoveCameraComponent(Ohedo_Entity* entity)
 {
     if (entity->camera != NULL)
         free(entity->camera);
+}
+
+void Ohedo_RemoveMeshRenderer(Ohedo_Entity* entity)
+{
+    if (entity->meshRenderer != NULL)
+        free(entity->meshRenderer);
 }
 
 i32 Ohedo_IsEntityValid(Ohedo_Entity* entity)
