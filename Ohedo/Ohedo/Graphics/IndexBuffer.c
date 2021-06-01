@@ -14,6 +14,11 @@ Ohedo_IndexBuffer Ohedo_CreateIndexBuffer(u32* indices, u32 size)
     return vbo;
 }
 
+void Ohedo_SetIndexBufferType(Ohedo_IndexBuffer buffer, Ohedo_IndexType type)
+{
+    buffer.type = type;
+}
+
 void Ohedo_DeleteIndexBuffer(Ohedo_IndexBuffer buffer)
 {
     glDeleteBuffers(1, &buffer.id);

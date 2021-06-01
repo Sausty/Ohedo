@@ -46,12 +46,12 @@ Ohedo_Mat4 Ohedo_Mat4_Diagonal(f32 diagonal)
 
 Ohedo_Mat4 Ohedo_Mat4_Multiply(Ohedo_Mat4 left, Ohedo_Mat4 right)
 {
-    float data[16];
+    f32 data[16];
 	for (i32 row = 0; row < 4; row++)
 	{
 		for (i32 col = 0; col < 4; col++)
 		{
-			float sum = 0.0f;
+			f32 sum = 0.0f;
 			for (i32 e = 0; e < 4; e++)
 			{
 				sum += left.data[e + row * 4] * right.data[col + e * 4];
@@ -59,7 +59,7 @@ Ohedo_Mat4 Ohedo_Mat4_Multiply(Ohedo_Mat4 left, Ohedo_Mat4 right)
 			data[col + row * 4] = sum;
 		}
 	}
-	memcpy(left.data, data, 4 * 4 * sizeof(float));
+	memcpy(left.data, data, 4 * 4 * sizeof(f32));
 	return left;
 }
 
@@ -76,9 +76,9 @@ Ohedo_Mat4 Ohedo_Mat4_Translate(Ohedo_Vec3 vector)
 {
     Ohedo_Mat4 result = Ohedo_Mat4_Identity();
     
-    result.data[0 + 3 * 4] = vector.x;
-    result.data[1 + 3 * 4] = vector.y;
-    result.data[2 + 3 * 4] = vector.z;
+    result.data[3 + 0 * 4] = vector.x;
+    result.data[3 + 1 * 4] = vector.y;
+    result.data[3 + 2 * 4] = vector.z;
     
     return result;
 }
@@ -106,18 +106,15 @@ Ohedo_Mat4 Ohedo_Mat4_Rotate(Ohedo_Vec3 vector, f32 angle)
     f32 x = vector.x;
     f32 y = vector.y;
     f32 z = vector.z;
-    
-    // X
+
     result.data[0 + 0 * 4] = x * x * omc + c;
     result.data[0 + 1 * 4] = y * x * omc + z * s;
     result.data[0 + 2 * 4] = x * z * omc - y * s;
 
-    // Y
     result.data[1 + 0 * 4] = x * y * omc - z * s;
     result.data[1 + 1 * 4] = y * y * omc + c;
     result.data[1 + 2 * 4] = y * z * omc + x * s;
 
-    // Z
     result.data[2 + 0 * 4] = x * z * omc + y * s;
     result.data[2 + 1 * 4] = y * z * omc - x * s;
     result.data[2 + 2 * 4] = z * z * omc + c;
@@ -133,9 +130,9 @@ Ohedo_Mat4 Ohedo_Mat4_Orthographic(f32 left, f32 right, f32 bottom, f32 top, f32
     result.data[1 + 1 * 4] = 2.0f / (top - bottom);
     result.data[2 + 2 * 4] = 2.0f / (near - far);
     
-    result.data[0 + 3 * 4] = (left + right) / (left - right);
-    result.data[1 + 3 * 4] = (bottom + top) / (bottom - top);
-    result.data[2 + 3 * 4] = (far + near) / (far - near);
+    result.data[3 + 0 * 4] = (left + right) / (left - right);
+    result.data[3 + 1 * 4] = (bottom + top) / (bottom - top);
+    result.data[3 + 2 * 4] = (far + near) / (far - near);
     
     return result;
 }
@@ -153,8 +150,8 @@ Ohedo_Mat4 Ohedo_Mat4_Perspective(f32 fov, f32 aspectRatio, f32 near, f32 far)
     result.data[0 + 0 * 4] = a;
     result.data[1 + 1 * 4] = q;
     result.data[2 + 2 * 4] = b;
-    result.data[2 + 3 * 4] = c;
-    result.data[3 + 2 * 4] = -1.0f;
+    result.data[2 + 3 * 4] = -1.0f;
+    result.data[3 + 2 * 4] = c;
     
     return result;
 }

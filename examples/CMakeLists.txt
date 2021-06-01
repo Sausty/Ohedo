@@ -23,3 +23,8 @@ add_executable(TextRendering "TextRendering.c")
 target_link_libraries(TextRendering PUBLIC Ohedo)
 target_link_directories(TextRendering PUBLIC Ohedo)
 target_include_directories(TextRendering PUBLIC "Ohedo")
+
+add_executable(MeshLoading "MeshLoading.c")
+target_link_libraries(MeshLoading PUBLIC Ohedo)
+target_link_directories(MeshLoading PUBLIC Ohedo)
+target_include_directories(MeshLoading PUBLIC "Ohedo")

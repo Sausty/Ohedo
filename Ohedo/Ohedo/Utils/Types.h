@@ -21,4 +21,17 @@ typedef u32 RenderID;
 #define Ohedo_Define_Struct(name) typedef struct name name;
 #define Ohedo_Define_Enum(name) typedef enum name name;
 
+// Macros
+#define foreach(i, count) \
+    for(i32 i=0; i < (count); ++i)
+
+#define array_count(arr) \
+    ( sizeof(arr) / sizeof(*arr) )
+
+#define kilobytes(x) (x            * 1024)
+#define megabytes(x) (kilobytes(x) * 1024)
+#define gigabytes(x) (megabytes(x) * 1024)
+
+#define offset_ptr_bytes(type, ptr, offset) ((type*)((u8*)ptr + (offset)))
+
 #endif

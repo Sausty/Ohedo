@@ -25,6 +25,8 @@
 #include <Ohedo/Graphics/IndexBuffer.h>
 #include <Ohedo/Graphics/Texture2D.h>
 #include <Ohedo/Graphics/BatchRenderer.h>
+#include <Ohedo/Graphics/Material.h>
+#include <Ohedo/Graphics/Mesh.h>
 
 // UI
 #include <Ohedo/Graphics/UI/Font.h>
